@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/top_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+
+    <View
+        android:id="@+id/center_view"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@id/top_view"
+        app:layout_constraintEnd_toEndOf="@id/top_view"
+        app:layout_constraintStart_toStartOf="@id/top_view"
+        app:layout_constraintTop_toTopOf="@id/top_view"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:text="电话"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/top_view"
+        app:layout_constraintEnd_toStartOf="@id/center_view"
+        app:layout_constraintTop_toTopOf="@id/top_view" />
+
+    <View
+        android:id="@+id/phone_view"
+        android:layout_width="20dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/tv_phone"
+        app:layout_constraintStart_toStartOf="@id/tv_phone"
+        app:layout_constraintTop_toBottomOf="@id/tv_phone" />
+
+    <TextView
+        android:id="@+id/tv_contract"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:text="联系人"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/top_view"
+        app:layout_constraintStart_toEndOf="@id/center_view"
+        app:layout_constraintTop_toTopOf="@id/top_view" />
+
+    <View
+        android:id="@+id/contract_view"
+        android:layout_width="20dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/black"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/tv_contract"
+        app:layout_constraintStart_toStartOf="@id/tv_contract"
+        app:layout_constraintTop_toBottomOf="@id/tv_contract" />
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/ic_search"
+        app:layout_constraintBottom_toBottomOf="@id/top_view"
+        app:layout_constraintEnd_toEndOf="@id/top_view"
+        app:layout_constraintTop_toTopOf="@id/top_view" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
