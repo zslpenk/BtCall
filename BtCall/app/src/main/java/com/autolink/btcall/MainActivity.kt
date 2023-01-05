@@ -30,16 +30,8 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    init(mainViewModel)
+                    Init(mainViewModel)
                 }
-
-//                Column(Modifier.padding(20.dp)) {
-//                    Text(text = "Text 1 !", color = MaterialTheme.colorScheme.error)
-//                    Text(text = "Text 2 !", color = MaterialTheme.colorScheme.secondary)
-//                    Text(text = "Text 3 !", color = MaterialTheme.colorScheme.primary)
-//                    Text(text = "Text 4 !", color = MaterialTheme.colorScheme.tertiary)
-//                    Text(text = "Text 5 !", color = MaterialTheme.colorScheme.inversePrimary)
-//                }
             }
         }
     }
@@ -59,8 +51,9 @@ fun DefaultPreview() {
 }
 
 @Composable
-fun init(mainViewModel: MainViewModel) {
+fun Init(mainViewModel: MainViewModel) {
     val navController = rememberNavController()
+    val main = mainViewModel
     
     NavHost(navController = navController, startDestination = DestMainPage) {
         composable(DestMainPage) { MainPage(navController = navController) }
