@@ -1,4 +1,4 @@
-package com.autolink.btcall.data
+package com.autolink.btcall.data.store
 
 import android.content.Context
 import androidx.datastore.core.DataStore
