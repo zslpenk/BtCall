@@ -1,5 +1,8 @@
 package com.autolink.btcall.viewmodels
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.autolink.btcall.action.UiAction
 import com.autolink.btcall.data.DataRepository
 import com.autolink.btcall.data.ViewState
@@ -16,6 +19,7 @@ class MainViewModel(
     private val searchService: DataRepository
 ) {
     private val coroutineScope = MainScope()
+    var permissionIsGranted by mutableStateOf(false)
 
     private val _viewState: MutableStateFlow<ViewState> = MutableStateFlow(ViewState())
     val viewState = _viewState.asStateFlow()
@@ -41,5 +45,9 @@ class MainViewModel(
                 }
             }
         }
+    }
+
+    fun permissionAction(isGranted: Boolean) {
+        permissionIsGranted = isGranted
     }
 }

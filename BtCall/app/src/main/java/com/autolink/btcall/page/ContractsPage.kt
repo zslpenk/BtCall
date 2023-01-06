@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.autolink.btcall.viewmodels.ContractsViewModel
 import java.lang.Math.abs
 
 @Composable
@@ -44,6 +45,10 @@ fun ContractsPage(navController: NavController) {
 @Preview
 @Composable
 fun ContractList() {
+    val viewModel = ContractsViewModel()
+    viewModel.getContract()
+    viewModel.getCallLog()
+
     val items = remember { LoremIpsum().values.first().split(" ").sortedBy { it.lowercase() } }
     val list = listOf("A", "B", "C", "D",
         "E","F","G","H","I","J","K","L","M","N",
@@ -114,7 +119,6 @@ fun ContractList() {
                         .padding(top = 4.dp)
                         .onGloballyPositioned {
                             offsets[i] = it.boundsInParent().center.y
-                            Log.d("zsl", "onGloballyPositioned ${it.boundsInParent().center.y}")
                         },
                     color = Color.White,
                     fontSize = if (selectedHeaderIndex == i) FontSize else NormalFontSize,
