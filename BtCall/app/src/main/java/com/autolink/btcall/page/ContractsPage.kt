@@ -1,11 +1,13 @@
 package com.autolink.btcall.page
 
 import android.util.Log
+import android.view.LayoutInflater
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -22,7 +24,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.autolink.btcall.R
+import com.autolink.btcall.data.adapter.PhoneAdapter
+import kotlinx.coroutines.launch
 import java.lang.Math.abs
 
 @Composable
@@ -45,9 +53,11 @@ fun ContractsPage(navController: NavController) {
 @Composable
 fun ContractList() {
     val items = remember { LoremIpsum().values.first().split(" ").sortedBy { it.lowercase() } }
-    val list = listOf("A", "B", "C", "D",
-        "E","F","G","H","I","J","K","L","M","N",
-        "O","P","Q","R","S","T","U","V","W","X", "Y","Z","#")
+    val list = listOf(
+        "A", "B", "C", "D",
+        "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"
+    )
 
     val headers = remember { list }
 
@@ -58,13 +68,13 @@ fun ContractList() {
             modifier = Modifier
                 .weight(1f)
         ) {
-//            items(items) {
-//                Text(it, color = Color.White)
-//            }
+            items(items) {
+                Text(it, color = Color.White)
+            }
         }
         val offsets = remember { mutableStateMapOf<Int, Float>() }
         var selectedHeaderIndex by remember { mutableStateOf(-1) }
-//        val scope = rememberCoroutineScope()
+        val scope = rememberCoroutineScope()
 
         fun updateSelectedIndexIfNeeded(offset: Float) {
             val index = offsets
@@ -75,10 +85,10 @@ fun ContractList() {
 
             if (selectedHeaderIndex == index) return
             selectedHeaderIndex = index
-//            val selectedItemIndex = items.indexOfFirst { it.first().uppercase() == headers[selectedHeaderIndex] }
-//            scope.launch {
-//                listState.scrollToItem(selectedItemIndex)
-//            }
+            val selectedItemIndex = items.indexOfFirst { it.first().uppercase() == headers[selectedHeaderIndex] }
+            scope.launch {
+                listState.scrollToItem(selectedItemIndex)
+            }
         }
 
         Column(
@@ -119,11 +129,32 @@ fun ContractList() {
                     color = Color.White,
                     fontSize = if (selectedHeaderIndex == i) FontSize else NormalFontSize,
                     textAlign = TextAlign.Center,
-                    )
+                )
             }
         }
     }
 }
+
+
+@Composable
+fun loadContractPageData() {
+    var myRecyclerView: RecyclerView? = null
+    var layoutManager: LinearLayoutManager? = null
+    var listAdapter: PhoneAdapter? = null
+    AndroidView(factory = {
+        //加载AndroidView布局。
+        LayoutInflater.from(it).inflate(R.layout.layout_android_view, null).apply {
+            myRecyclerView = findViewById<RecyclerView>(R.id.phone_recycleview)
+            layoutManager = LinearLayoutManager(it)
+            listAdapter = PhoneAdapter(mutableListOf(), it)
+
+        }
+    }, modifier = Modifier.fillMaxSize()) {
+        myRecyclerView!!.adapter = listAdapter
+        myRecyclerView!!.layoutManager = layoutManager
+    }
+}
+
 
 private val NormalLetterWidth = 20.dp
 private val NormalLetterHight = 20.dp

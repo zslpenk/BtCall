@@ -34,11 +34,11 @@ fun PhoneNumberPage(navController: NavController) {
     phoneData.add(PhoneData("123", 1, "1997-01-10"))
     phoneData.add(PhoneData("1115", 1, "1997-01-10"))
     phoneData.add(PhoneData("13788524761", 1, "1997-01-10"))
-    loadAndroidView()
+    loadPhoneData()
 }
 
 @Composable
-fun loadAndroidView() {
+fun loadPhoneData() {
     var myRecyclerView: RecyclerView? = null
     var layoutManager: LinearLayoutManager? = null
     var listAdapter: PhoneAdapter? = null

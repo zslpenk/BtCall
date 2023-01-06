@@ -62,5 +62,6 @@ fun Init(mainViewModel: MainViewModel) {
         composable(DestCallingPage) { CallingPage(navController = navController) }
         composable(DestContractsPage) { ContractsPage(navController = navController) }
         composable(DestContractsSyncPage) { ContractsSyncPage(navController = navController) }
+        composable(DestContractsSearchPage) { ContractsSearchPage(navController = navController) }
     }
 }
