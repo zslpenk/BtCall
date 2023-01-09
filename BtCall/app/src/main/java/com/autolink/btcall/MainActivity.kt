@@ -129,6 +129,7 @@ fun Init(mainViewModel: MainViewModel) {
         composable(DestContractsPage) { ContractsPage(navController = navController) }
         composable(DestContractsSyncPage) { ContractsSyncPage(navController = navController) }
         composable(DestContractsSearchPage) { ContractsSearchPage(navController = navController) }
+        composable(DestCallKeyBoardPage) { CallKeyBoardPage(navController = navController) }
     }
 }
 
